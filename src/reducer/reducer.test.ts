@@ -1,5 +1,5 @@
 import { reducer } from "./reducer";
-import { NotificationDestination } from "../../App";
+import { NotificationDestination } from "../pages/UseReducer";
 
 describe("reducerのテスト", () => {
   let notifications: NotificationDestination[] = [

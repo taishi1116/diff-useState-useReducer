@@ -1,4 +1,4 @@
-import { NotificationDestination, DisplayMode } from "../../App";
+import { NotificationDestination, DisplayMode } from "../pages/UseReducer";
 
 type Actions =
   | {
@@ -22,8 +22,11 @@ export const reducer = (
         return state;
       }
 
-      state[index].displayMode = displayMode;
-      return state;
+      return state.map((o, mIndex) => {
+        return mIndex === index
+          ? { displayMode: displayMode, email: o.email }
+          : o;
+      });
     }
 
     case "newNotification": {

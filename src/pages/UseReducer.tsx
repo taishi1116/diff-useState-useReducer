@@ -1,7 +1,7 @@
-import { EditNotificationDestination } from "../components/UseReducerPractice/EditNotificationDestination";
-import { ViewNotificationDestination } from "../components/UseReducerPractice/ViewNotificationDestination";
+import { EditNotificationDestination } from "../components/EditNotificationDestination";
+import { ViewNotificationDestination } from "../components/ViewNotificationDestination";
 import { useReducer } from "react";
-import { reducer } from "../components/UseReducerPractice/reducer";
+import { reducer } from "../reducer/reducer";
 
 export type DisplayMode = "view" | "edit";
 export type NotificationDestination = {
@@ -18,7 +18,7 @@ export const UseReducer = () => {
   return (
     <div className="App">
       {notifications.map((o, mIndex) => (
-        <>
+        <div key={mIndex}>
           {o.displayMode === "edit" ? (
             <EditNotificationDestination
               index={mIndex + 1}
@@ -48,12 +48,12 @@ export const UseReducer = () => {
               onClick={() =>
                 dispatch({
                   type: "changeDisplayMode",
-                  payload: { index: mIndex, displayMode: "view" },
+                  payload: { index: mIndex, displayMode: "edit" },
                 })
               }
             />
           )}
-        </>
+        </div>
       ))}
 
       {isNotificationFillMaximum ? (

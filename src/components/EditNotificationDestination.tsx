@@ -19,8 +19,8 @@ export const EditNotificationDestination: React.FC<Props> = ({
     <div>
       <span>通知先{index}</span>
       <input value={value} onChange={onChange} />
-      <button onClick={onSave}>編集</button>
-      <button onClick={onDelete}>編集</button>
+      <button onClick={onSave}>保存</button>
+      <button onClick={onDelete}>削除</button>
     </div>
   );
 };
