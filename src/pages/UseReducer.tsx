@@ -14,7 +14,7 @@ const initialState: NotificationDestination[] = [];
 export const UseReducer = () => {
   const [notifications, dispatch] = useReducer(reducer, initialState);
 
-  const isNotificationFillMaximum = notifications.length <= 5;
+  const isNotificationMaximum = notifications.length >= 5;
   return (
     <div className="App">
       {notifications.map((o, mIndex) => (
@@ -56,7 +56,7 @@ export const UseReducer = () => {
         </div>
       ))}
 
-      {isNotificationFillMaximum ? (
+      {!isNotificationMaximum ? (
         <button onClick={() => dispatch({ type: "newNotification" })}>
           追加
         </button>

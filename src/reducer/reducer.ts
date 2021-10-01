@@ -18,10 +18,6 @@ export const reducer = (
     case "changeDisplayMode": {
       const { index, displayMode } = action.payload;
 
-      if (state.every((o, sIndex) => sIndex !== index)) {
-        return state;
-      }
-
       return state.map((o, mIndex) => {
         return mIndex === index
           ? { displayMode: displayMode, email: o.email }
