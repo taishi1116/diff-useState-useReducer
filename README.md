@@ -1,46 +1,35 @@
-# Getting Started with Create React App
+# このリポジトリについて
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- `React.js` の`useState`と`useReducer`の差分を理解するための検証リポジトリです
 
-## Available Scripts
+## 作った画面
 
-In the project directory, you can run:
+- 連絡先登録フォーム
+  - ユーザーは 5 件まで連絡先を追加することができる
+  - 連絡先の設定は下記が存在
+    - 閲覧モード
+      - メールアドレスを編集不可
+      - 編集ボタンを押下することで編集モードに切り替え
+    - 編集モード
+      - メールアドレスの編集が可能
+      - メールアドレスの保存が可能
+        - 保存を押下したら閲覧モードとなる
+      - メールアドレスの削除が可能
 
-### `yarn start`
+# 差分
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## useState
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- `state`,`setState`の実装で実装コストが低い
+- `state`変更の関数で`setState`が絡むのでテストコードが書けない
 
-### `yarn test`
+よって`state`が少しでも複雑になると品質担保が難しいので、state が簡単な場面で利用するべき
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## useReducer
 
-### `yarn build`
+- `action`,`reducer`と`useState`と比べて実装コストがかかる
+- `actions`,`reducer`で`useState`よりも明文化されている印象
+- `reducer`は純粋関数なのでさまざまな state のケースの単体テストがかける
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+実装コストは高くなるが単体テストがかけることが大きなメリットだと感じている。  
+よって少しでも複雑な state or 複雑な state 更新がある場合は`useReducer`を採用するべき
