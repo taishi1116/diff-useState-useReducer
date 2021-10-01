@@ -8,10 +8,10 @@ type Props = {
 export const ViewNotificationDestination: React.FC<Props> = ({
   value,
   onClick,
-}) => {
+}) => { 
   return (
     <div>
-      <div>{value}</div>
+      <span>{value}</span>
       <button onClick={onClick}>編集</button>
     </div>
   );
